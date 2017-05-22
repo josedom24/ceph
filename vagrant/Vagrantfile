@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do |config|
+
+    config.vm.define "master" do |master|
+      master.vm.box = "debian/jessie64"
+      master.vm.hostname = "master"
+      master.vm.network "public_network", bridge: "eth0"
+      master.vm.network "private_network", ip: "10.0.100.101"
+      master.vm.network "forwarded_port", guest: 22, host: 2211, host_ip: "127.0.0.1", id: 'ssh'
+    end
+
+    config.vm.define "nodo1" do |nodo1|
+      nodo1.vm.box = "debian/jessie64"
+      nodo1.vm.hostname = "nodo1"
+      nodo1.vm.network "public_network", bridge: "eth0"
+      nodo1.vm.network "private_network", ip: "10.0.100.102"
+      nodo1.vm.network "forwarded_port", guest: 22, host: 2212, host_ip: "127.0.0.1", id: 'ssh'
+    end
+
+    config.vm.define "nodo2" do |nodo2|
+      nodo2.vm.box = "debian/jessie64"
+      nodo2.vm.hostname = "nodo2"
+      nodo2.vm.network "public_network", bridge: "eth0"
+      nodo2.vm.network "private_network", ip: "10.0.100.103"
+      nodo2.vm.network "forwarded_port", guest: 22, host: 2213, host_ip: "127.0.0.1", id: 'ssh'
+    end
+    config.vm.define "nodo3" do |nodo3|
+      nodo3.vm.box = "debian/jessie64"
+      nodo3.vm.hostname = "nodo3"
+      nodo3.vm.network "public_network", bridge: "eth0"
+      nodo3.vm.network "private_network", ip: "10.0.100.104"
+      nodo3.vm.network "forwarded_port", guest: 22, host: 2214, host_ip: "127.0.0.1", id: 'ssh'
+    end
+end
